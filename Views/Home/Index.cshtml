@@ -1,0 +1,259 @@
+﻿@{
+    ViewBag.Title = "Garden Ticket System";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* General Styles */
+    body, h1, h2, h3, p, ul, li, a {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Garden-Themed Color Scheme */
+    .bg-primary {
+        background-color: #66bb6a !important; /* Garden green */
+    }
+
+    .bg-secondary {
+        background-color: #c8e6c9 !important; /* Light green */
+    }
+
+    .text-primary {
+        color: #388e3c !important; /* Dark garden green */
+    }
+
+    .btn-primary {
+        background-color: #43a047;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        transition: transform 0.2s;
+    }
+
+        .btn-primary:hover {
+            background-color: #2e7d32;
+            transform: scale(1.05);
+        }
+
+    .btn-dark {
+        background-color: #2e7d32;
+        color: white;
+        border: none;
+    }
+
+    /* Card Styling */
+    .card {
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .card-title {
+        color: #388e3c; /* Primary garden green for titles */
+    }
+
+    .text-light {
+        color: #f9fbe7 !important; /* Very light green for contrast */
+    }
+
+    /* Section Headers */
+    h1, h2 {
+        color: #2e7d32;
+    }
+
+    /* Container Spacing */
+    .container {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    /* Shadows */
+    .shadow {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Newsletter Input */
+    .news-input input {
+        border-radius: 8px 0 0 8px;
+        border: 1px solid #43a047;
+    }
+
+    .news-input .btn-dark {
+        border-radius: 0 8px 8px 0;
+    }
+</style>
+
+<!-- Hero Section -->
+<!-- Hero Section -->
+<div class="bg-dark pb-5">
+    <section class="text-light p-5 text-center">
+        <div class="container">
+            <div class="content">
+                <h1 class="display-4 mb-4"><span class="text-primary">Maansoft Ticketing</span> - Streamline Your Event Management</h1>
+                <p class="lead my-4 mx-auto" style="max-width: 700px;">
+                    Our platform is designed to simplify ticket management, enabling you to seamlessly organize, track, and manage events while delivering a smooth experience for your customers.
+                </p>
+                <a asp-controller="Customer" asp-action="Create" class="btn btn-primary btn-lg mt-3">Ticket Now</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+<!-- Newsletter -->
+<section class="bg-primary text-light p-5">
+    <div class="container">
+        <div class="d-md-flex justify-content-between align-items-center">
+            <h3 class="mb-3 mb-md-0">Find Beautful Places By Name</h3>
+            <div class="input-group news-input">
+                <input type="text" class="form-control" placeholder="Search a Beautful Places" />
+                <button class="btn btn-dark btn-lg" type="button">Search</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="p-5" id="Courses">
+    <div class="container">
+        <h2 class="text-center mb-4">Our Beautifull Places</h2>
+        <div class="row text-center g-4">
+            <div class="col-md">
+                <div class="card  text-light">
+                    <div class="card-body text-center">
+                        <img class="img-fluid mb-3" src="~/Images/dalxiiska.jpg" alt="Web Development" />
+                        <h3 class="card-title mb-3">Swimming Pool</h3>
+                        <p class="card-text text-dark">Learn the latest in front-end and back-end development technologies.</p>
+                        <a asp-controller="CoursesController1" asp-action="Programming" class="btn btn-primary">More Detail</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card  text-light">
+                    <div class="card-body text-center">
+                        <img class="img-fluid mb-3" src="~/Images/dalxiiska.jpg" alt="Multimedia" />
+                        <h3 class="card-title mb-3">Trains</h3>
+                        <p class="card-text text-dark">Explore the world of multimedia design and editing skills.</p>
+                        <a asp-controller="CoursesController1" asp-action="Graphich" class="btn btn-dark">More Detail</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card  text-light">
+                    <div class="card-body text-center">
+                        <img class="img-fluid mb-3" src="~/Images/dalxiiska.jpg" alt="Networking" />
+                        <h3 class="card-title mb-3">Rest Places</h3>
+                        <p class="card-text text-dark">Build foundational skills for network management and security.</p>
+                        <a href="#" class="btn btn-primary">More Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Learn Section 1 -->
+<section class="p-5">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md">
+                <img src="~/Images/lift.jpg" class="img-fluid" alt="Learn the Fundamentals" />
+            </div>
+            <div class="col-md p-5">
+                <h2>Learn The Fundamentals</h2>
+                <p class="lead"> Master the foundational skills that are essential in tech industries Master the foundational skills that are essential in tech industries Master the foundational skills that are essential in tech industries.</p>
+                <a href="#" class="btn btn-light mt-3">
+                    <i class="bi bi-chevron-right"></i> More Detail
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Learn Section 2 -->
+<section id="learn" class="p-5 bg-dark text-light">
+    <div class="container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md p-5">
+                <h2>Learn Any Framework</h2>
+                <p class="lead">Whether front-end or back-end, we have the courses you need.</p>
+                <a href="#" class="btn btn-light mt-3">
+                    <i class="bi bi-chevron-right"></i> Read More
+                </a>
+            </div>
+            <div class="col-md">
+                <img src="~/Imaged/web.png" class="img-fluid" alt="Learn Frameworks" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="questions" class="p-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+        <div class="accordion accordion-flush" id="questions">
+            <!-- Add each question as an accordion item -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#question-one">
+                        Where exactly are you located?
+                    </button>
+                </h2>
+                <div id="question-one" class="accordion-collapse collapse" data-bs-parent="#questions">
+                    <div class="accordion-body">Our campus is located in the heart of the city...</div>
+                </div>
+            </div>
+            <!-- Additional FAQ items as needed -->
+        </div>
+    </div>
+</section>
+
+<!-- Instructor Section -->
+<section id="instructors" class="p-5 bg-primary">
+    <div class="container">
+        <h2 class="text-center text-white">Our Instructors</h2>
+        <p class="lead text-center text-white mb-5">Experienced instructors with 5+ years in tech.</p>
+        <div class="row g-4">
+            <!-- Instructor Cards -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle mb-3" alt="John Doe" />
+                        <h3 class="card-title mb-3">John Doe</h3>
+                        <p class="card-text">Specialist in front-end development and UX design.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                            <a href="#"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Additional instructor cards as needed -->
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="p-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Contact Info</h2>
+        <div class="row g-4">
+            <div class="col-md">
+                <ul class="list-group list-group-flush lead">
+                    <li class="list-group-item"><span class="fw-bold">Main Location:</span> Hodan -road Makkah Al-mukarama</li>
+                    <li class="list-group-item"><span class="fw-bold">Enrollment Phone:</span> (090) 744-7780</li>
+                    <li class="list-group-item"><span class="fw-bold">Student Phone:</span> (252) 090-7447780</li>
+                    <li class="list-group-item"><span class="fw-bold">Enrollment Email:</span> adnansaid@gmail.com</li>
+                </ul>
+            </div>
+            <div class="col-md">
+                <img src="~/Images/hero.jpg" class="img-fluid" alt="Contact Image" />
+            </div>
+        </div>
+    </div>
+</section>

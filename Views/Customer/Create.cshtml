@@ -1,0 +1,134 @@
+﻿@model Tabaarak.Models.Entities.Customer
+
+
+<style>
+    .card {
+        background-color: #f9fbe7; /* Soft green background */
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2.text-center {
+        color: #388e3c; /* Garden green title */
+        font-weight: bold;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #388e3c;
+    }
+
+    .form-control {
+        border: 2px solid #66bb6a;
+        border-radius: 50px;
+        padding: 10px 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+        .form-control:focus {
+            border-color: #388e3c;
+            box-shadow: 0 4px 8px rgba(56, 142, 60, 0.3);
+        }
+
+    .text-danger {
+        color: #d32f2f;
+        font-size: 0.9em;
+    }
+
+    .btn-primary, .btn-secondary {
+        border-radius: 50px;
+        padding: 12px 20px;
+        font-weight: bold;
+        color: white;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(102, 187, 106, 0.4);
+        transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+
+    .btn-primary {
+        background-color: #66bb6a;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #388e3c;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(56, 142, 60, 0.5);
+        }
+
+    .btn-secondary {
+        background-color: #8bc34a;
+        border: none;
+    }
+
+        .btn-secondary:hover {
+            background-color: #689f38;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(104, 159, 56, 0.5);
+        }
+</style>
+
+<div class="container-fluid mt-5 px-0">
+    <div class="card shadow-lg p-5 rounded-lg border-0 mx-3">
+        <h2 class="text-center mb-4"><i class="fas fa-user-plus me-2"></i> Create Customer</h2>
+        <hr class="mb-4">
+
+        <form asp-action="Create" method="post">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label asp-for="FirstName" class="form-label"></label>
+                    <input asp-for="FirstName" class="form-control" placeholder="Enter first name">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label asp-for="LastName" class="form-label"></label>
+                    <input asp-for="LastName" class="form-control" placeholder="Enter last name">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label asp-for="PhoneNumber" class="form-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="Enter phone number">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <!-- Dropdown for Customer Type -->
+                <div class="col-md-12 mb-4">
+                    <label asp-for="CustomerType" class="form-label"></label>
+                    <select asp-for="CustomerType" class="form-control" asp-items="@(ViewData["CustomerTypes"] as List<SelectListItem>)">
+                        <option value="">Select customer type</option>
+                    </select>
+                    <span asp-validation-for="CustomerType" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            <!-- Submit and Back to List Buttons -->
+            <div class="row mt-5">
+                <div class="col-md-6 text-center">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-2"></i> Create
+                    </button>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a asp-controller="Customer" asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i> Back to List
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+<div class="container mt-5">
+    <div class="card shadow-sm p-4">
+        <h2 class="text-center text-success mb-4">Roles Management</h2>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-success">
+                    <tr>
+                        <th class="text-center">Role Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@role.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+            <a asp-action="CreateRole" class="btn btn-primary me-3 px-4">
+                <i class="fas fa-plus-circle me-2"></i> Create New Role
+            </a>
+            <a asp-action="CreateUser" class="btn btn-success px-4">
+                <i class="fas fa-user-plus me-2"></i> Create New User with Role
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 600px;
+    }
+
+    .card {
+        border-radius: 10px;
+        background-color: #f9fbe7; /* Soft green for nature-inspired look */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    h2.text-center {
+        font-weight: bold;
+        color: #388e3c; /* Garden green title */
+    }
+
+    .table thead th {
+        background-color: #66bb6a; /* Header green */
+        color: white;
+        font-weight: bold;
+    }
+
+    .table tbody td {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #e8f5e9; /* Light green on hover */
+    }
+
+    .btn-primary, .btn-success {
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 20px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .btn-success:hover {
+            background-color: #388e3c;
+            transform: scale(1.05);
+        }
+
+    .table-responsive {
+        margin-top: 20px;
+    }
+</style>

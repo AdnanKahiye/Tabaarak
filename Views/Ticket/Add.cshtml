@@ -1,0 +1,112 @@
+﻿@{
+    ViewData["Title"] = "Vertical Form - Form Layouts";
+}
+
+@model TicketModel
+
+<style>
+    /* Use container-fluid to remove left and right padding */
+    .container-fluid {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .card {
+        background-color: #f9fbe7; /* Light green background for garden feel */
+    }
+
+    h3.text-center {
+        color: #388e3c; /* Garden green for title */
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #388e3c;
+    }
+
+    .form-control, .btn {
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .form-control:hover, .btn:hover {
+            transform: scale(1.02); /* Slight zoom effect on hover */
+        }
+
+    .hover-effect:hover {
+        background-color: #66bb6a !important; /* Darker green hover effect */
+        color: #fff !important;
+    }
+
+    .btn-warning {
+        color: #fff;
+    }
+
+    .btn-outline-warning {
+        border-color: #ffb74d;
+        color: #ffb74d;
+    }
+
+        .btn-outline-warning:hover {
+            background-color: #ffb74d;
+            color: #fff;
+        }
+</style>
+
+<div class="container-fluid">
+    <div class="card shadow-lg p-5 rounded-4 border-0">
+        <h3 class="text-center fw-bold mb-4">
+            <i class="fas fa-ticket-alt me-2"></i> New Ticket Registration
+        </h3>
+        <hr class="mb-4">
+
+        <!-- Back Button on the Right -->
+        <div class="d-flex justify-content-end mb-3">
+            <a asp-controller="Ticket" asp-action="Tickets" class="btn btn-warning px-4 py-2 rounded-pill shadow-sm">
+                <i class="fas fa-arrow-left me-2"></i> Back to View
+            </a>
+        </div>
+
+        <form method="post" asp-action="Add" asp-controller="Ticket">
+            <!-- Ticket Details Section -->
+            <div class="mt-4">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="TicketName" class="form-label"></label>
+                        <input type="text" asp-for="TicketName" class="form-control rounded-pill border-primary shadow-sm" id="ticketName" placeholder="Enter ticket name">
+                        <span asp-validation-for="TicketName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="TicketAmount" class="form-label"></label>
+                        <input asp-for="TicketAmount" type="number" class="form-control rounded-pill border-primary shadow-sm" id="amount" placeholder="Enter amount">
+                        <span asp-validation-for="TicketAmount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <label asp-for="TicketDescription" class="form-label"></label>
+                        <textarea class="form-control rounded-pill border-primary shadow-sm" id="description" placeholder="Provide a description" asp-for="TicketDescription" rows="3"></textarea>
+                        <span asp-validation-for="TicketDescription" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- Submit and Reset Buttons -->
+                <div class="row text-center mt-4">
+                    <div class="col-md-6 mb-2">
+                        <button type="submit" class="btn btn-success w-100 py-2 rounded-pill shadow-sm hover-effect">
+                            <i class="fas fa-paper-plane me-2"></i> Submit
+                        </button>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <button type="reset" class="btn btn-warning w-100 py-2 rounded-pill shadow-sm hover-effect">
+                            <i class="fas fa-undo me-2"></i> Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

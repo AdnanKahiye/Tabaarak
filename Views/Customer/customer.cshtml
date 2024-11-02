@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Customer List";
+}
+
+@model IEnumerable<Customer>
+
+<style>
+    /* Card styling */
+    .card {
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        background-color: #f9fbe7;
+        margin-top:0
+        /* Light green background */
+    }
+
+    .card-header {
+        background-color: #66bb6a; /* Garden green */
+        color: white;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+        .card-header .btn-primary {
+            background-color: #388e3c;
+            border: none;
+            border-radius: 8px;
+        }
+
+    .table th {
+        color: #388e3c;
+        font-weight: bold;
+    }
+
+    .table tr {
+        transition: background-color 0.2s;
+    }
+
+        .table tr:hover {
+            background-color: #e8f5e9; /* Light hover effect */
+        }
+
+    .btn-warning {
+        background-color: #ffb74d;
+        border: none;
+        color: white;
+        border-radius: 8px;
+    }
+
+        .btn-warning:hover {
+            background-color: #ff9800;
+        }
+
+    .btn-danger {
+        background-color: #d32f2f;
+        border: none;
+        color: white;
+        border-radius: 8px;
+    }
+
+        .btn-danger:hover {
+            background-color: #c62828;
+        }
+
+    .btn-info {
+        background-color: #29b6f6;
+        border: none;
+        color: white;
+        border-radius: 8px;
+    }
+
+        .btn-info:hover {
+            background-color: #039be5;
+        }
+</style>
+
+<div class="card shadow-sm ">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Customer List</span>
+        <a asp-controller="Customer" asp-action="Create" class="btn btn-primary px-4">Add New Customer</a>
+    </div>
+
+    <!-- Search Input -->
+    <div class="p-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by phone number..." onkeyup="filterTable()">
+    </div>
+
+    <div class="table-responsive text-nowrap">
+        <table class="table table-hover align-middle" id="customerTable">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Customer Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td>@customer.FirstName</td>
+                        <td>@customer.LastName</td>
+                        <td>@customer.Email</td>
+                        <td>@customer.PhoneNumber</td>
+                        <td>@customer.CustomerType</td>
+                        <td>
+                            <a asp-controller="TicketBooking" asp-action="Create" asp-route-id="@customer.CustomerID" class="btn btn-info btn-sm me-1">Booking</a>
+
+                            <a asp-controller="Customer" asp-action="Edit" asp-route-id="@customer.CustomerID" class="btn btn-warning btn-sm me-1">Edit</a>
+                            <a asp-controller="Customer" asp-action="Delete" asp-route-id="@customer.CustomerID" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function filterTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("customerTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                // Get the Phone Number column (index 3, as indexing starts from 0)
+                td = tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+}

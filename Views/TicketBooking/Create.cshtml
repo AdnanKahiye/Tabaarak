@@ -1,0 +1,147 @@
+﻿@model TicketBooking 
+
+@{
+    ViewData["Title"] = "Create Ticket Booking";
+}
+
+
+
+<style>
+    .card {
+        background-color: #f9fbe7; /* Soft green for a nature-inspired look */
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        margin: 0; /* Remove left and right margins */
+        padding: 30px; /* Optional: Add padding for inner spacing */
+    }
+
+    h2.text-center {
+        color: #388e3c; /* Garden green title */
+        font-weight: bold;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #388e3c;
+    }
+
+    .form-control {
+        border: 2px solid #66bb6a;
+        border-radius: 50px;
+        padding: 10px 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+        .form-control:focus {
+            border-color: #388e3c;
+            box-shadow: 0 4px 8px rgba(56, 142, 60, 0.3);
+        }
+
+    .text-danger {
+        color: #d32f2f;
+        font-size: 0.9em;
+    }
+
+    .btn-primary {
+        background-color: #66bb6a;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 0;
+        font-weight: bold;
+        color: white;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(102, 187, 106, 0.4);
+        transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+        margin-top: 20px; /* Add margin to button */
+    }
+
+        .btn-primary:hover {
+            background-color: #388e3c;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(56, 142, 60, 0.5);
+        }
+</style>
+
+<div class="container ">
+    <div class="card shadow-lg p-5 rounded-lg border-0">
+        <h2 class="text-center mb-4"><i class="fas fa-ticket-alt me-2"></i> Create Ticket Booking</h2>
+        <hr class="mb-4">
+
+        <form asp-action="Create" method="post">
+            <div class="row">
+                <!-- Customer Selection -->
+                <div class="col-md-6 mb-4">
+                    <label for="CustomerID" class="form-label">Customer Name</label>
+                    <select asp-for="CustomerID" class="form-control" asp-items="@(new SelectList(ViewBag.Customers, "CustomerID", "FirstName" ))">
+                    </select>
+                    <span asp-validation-for="CustomerID" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label for="TicketName" class="form-label">Select Ticket Type</label>
+                    <select asp-for="TicketName" class="form-control" asp-items="@(new SelectList(ViewBag.TicketTypes))">
+                        <option value="">Select Ticket Type</option>
+                    </select>
+                    <span asp-validation-for="TicketName" class="text-danger"></span>
+                </div>
+
+
+
+
+                <!-- Visit Date -->
+                <div class="col-md-6 mb-4">
+                    <label for="VisitDate" class="form-label">Visit Date</label>
+                    <input asp-for="VisitDate" class="form-control" type="date">
+                    <span asp-validation-for="VisitDate" class="text-danger"></span>
+                </div>
+
+                <!-- Quantity -->
+                <div class="col-md-6 mb-4">
+                    <label asp-for="Quantity" class="form-label"></label>
+                    <input asp-for="Quantity" class="form-control" placeholder="Enter quantity">
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+
+                <!-- Total Amount -->
+                <div class="col-md-6 mb-4">
+                    <label for="TotalAmount" class="form-label">Total Amount</label>
+                    <input asp-for="TotalAmount" class="form-control" type="number" step="0.01" placeholder="Enter total amount">
+                    <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="col-md-6 mb-4">
+                    <label for="PaymentMethod" class="form-label">Payment Method</label>
+                    <select asp-for="PaymentMethod" class="form-control">
+                        <option value="">Select payment method</option>
+                        <option value="Cash">Cash</option>
+                        <option value="MobilePayment">Mobile Payment</option>
+                        <option value="BankTransfer">Bank Transfer</option>
+                    </select>
+                    <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Submit and Back to List Buttons -->
+            <div class="row mt-5">
+                <div class="col-md-6 text-center">
+                    <button type="submit" class="btn btn-success w-100 py-2 rounded-pill shadow-sm hover-effect">
+                        <i class="fas fa-paper-plane me-2"></i> Submit
+                    </button>
+                </div>
+                <div class="col-md-6 text-center">
+                    <a asp-controller="CustomerType" asp-action="CustomerTypes" class="btn btn-warning w-100 py-2 rounded-pill shadow-sm hover-effect">
+                        <i class="fas fa-arrow-left me-2"></i> Back to List
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

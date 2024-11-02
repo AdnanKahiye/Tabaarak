@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Vertical Form - Form Layouts";
+}
+
+@model TicketModel
+
+<style>
+    .card {
+        background-color: #f9fbe7; /* Light green background for garden theme */
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h3.text-center {
+        color: #388e3c; /* Garden green for the title */
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #388e3c;
+    }
+
+    .form-control {
+        border: 1px solid #66bb6a;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+        .form-control:focus {
+            border-color: #388e3c;
+            box-shadow: 0 4px 8px rgba(56, 142, 60, 0.2);
+        }
+
+    .btn-primary {
+        background-color: #66bb6a;
+        border: none;
+        border-radius: 12px;
+        padding: 10px 30px;
+        font-weight: bold;
+        color: white;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+
+        .btn-primary:hover {
+            background-color: #388e3c;
+            transform: scale(1.05);
+        }
+
+    .btn-secondary {
+        background-color: #8bc34a;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 10px 30px;
+        font-weight: bold;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+
+        .btn-secondary:hover {
+            background-color: #689f38;
+            transform: scale(1.05);
+        }
+</style>
+
+<div class="container-fluid px-0">
+    <div class="card shadow-lg p-5 rounded-lg border-0 mx-3">
+        <h3 class="text-center mb-4"><i class="fas fa-ticket-alt me-2"></i> Edit Tickets</h3>
+        <hr class="mb-4">
+
+        <form method="post" asp-action="Edit" asp-controller="Ticket">
+            <!-- Ticket Details Section -->
+            <input type="hidden" asp-for="TicketId" />
+
+            <div class="mt-4">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="TicketName" class="form-label"></label>
+                        <input type="text" asp-for="TicketName" class="form-control" id="ticketName" placeholder="Enter ticket name">
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label asp-for="TicketAmount" class="form-label"></label>
+                        <input asp-for="TicketAmount" type="number" class="form-control" id="amount" placeholder="Enter amount">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <label asp-for="TicketDescription" class="form-label"></label>
+                        <textarea class="form-control" id="description" placeholder="Provide a description" asp-for="TicketDescription" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <!-- Submit and Back to List Buttons -->
+                <div class="row mt-5">
+                    <div class="col-md-6 text-center">
+                        <button type="submit" class="btn btn-success w-100 py-2 rounded-pill shadow-sm hover-effect">
+                            <i class="fas fa-paper-plane me-2"></i> Update
+                        </button>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a asp-controller="Ticket" asp-action="Tickets" class="btn btn-warning w-100 py-2 rounded-pill shadow-sm hover-effect">
+                            <i class="fas fa-arrow-left me-2"></i> Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

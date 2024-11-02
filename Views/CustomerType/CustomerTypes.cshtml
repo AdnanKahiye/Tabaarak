@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Basic Tables - Tables";
+}
+
+@model List<CustomerType>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #66bb6a; /* Green header for a modern look */
+        color: white;
+        font-weight: bold;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    .table th {
+        background-color: #f1f8e9; /* Light green for table header */
+        font-weight: bold;
+        color: #388e3c; /* Dark green for header text */
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+    .btn-primary {
+        background-color: #388e3c;
+        border: none;
+        border-radius: 50px;
+        padding: 8px 20px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #2e7d32;
+        }
+
+    .btn-sm {
+        font-size: 0.9em;
+        padding: 6px 12px;
+        border-radius: 8px;
+    }
+
+    .btn-warning {
+        color: #fff;
+        background-color: #ffa726;
+        border: none;
+    }
+
+    .btn-danger {
+        color: #fff;
+        background-color: #e57373;
+        border: none;
+    }
+
+    .btn-warning:hover {
+        background-color: #fb8c00;
+    }
+
+    .btn-danger:hover {
+        background-color: #d32f2f;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>Customer Type List</span>
+            <a asp-controller="CustomerType" asp-action="Add" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i> Add New Customer Type
+            </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Customer Type</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var custype in Model)
+                    {
+                        <tr>
+                            <td>@custype.Customtype</td>
+                            <td>@custype.CustomDescription</td>
+                            <td>
+                                <a asp-controller="CustomerType" asp-action="Edit" asp-route-id="@custype.CustomerId" class="btn btn-warning btn-sm me-2">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a asp-controller="CustomerType" asp-action="Delete" asp-route-id="@custype.CustomerId" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
